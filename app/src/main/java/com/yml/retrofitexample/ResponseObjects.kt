@@ -9,9 +9,13 @@ data class ResponseObjects(
     val post_id: Int,
     @SerializedName("id")
     val user_id: Int,
+    val userId: Int,
     val name: String,
     val email: String,
-    val body: String
+    val title:String,
+    val body: String,
+    val completed: String
+
 
 //    val id: Int,
 //    val name: String,
