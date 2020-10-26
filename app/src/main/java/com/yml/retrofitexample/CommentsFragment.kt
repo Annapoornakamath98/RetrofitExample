@@ -18,24 +18,32 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
         super.onViewCreated(view, savedInstanceState)
         recycler=view.findViewById(R.id.recyclerView)
         recycler.layoutManager= LinearLayoutManager(view.context)
-        val retro = RetrofitInitializer.getRetrofitInstance()
-        val apiInterface = retro.create(APIInterface::class.java)
-        val objects: Call<List<ResponseObjects>> = apiInterface.getComments()
-        objects.enqueue(object : Callback<List<ResponseObjects>> {
-            override fun onResponse(
-                call: Call<List<ResponseObjects>>,
-                response: Response<List<ResponseObjects>>
-            ) {
 
-                val uList : List<ResponseObjects> = response.body()!!
-                recycler.adapter=AdapterClass(uList)
+        val mainViewModel = MainViewModel()
+        mainViewModel.getComments(object : ViewCallBack{
+            override fun onApiSuccess(postsList: List<ResponseObjects>) {
+                recycler.adapter=AdapterClass(postsList)
             }
-
-            override fun onFailure(call: Call<List<ResponseObjects>>, t: Throwable) {
-                Toast.makeText(view.context,t.toString(), Toast.LENGTH_LONG).show()
-            }
-
         })
+
+//        val retro = RetrofitInitializer.getRetrofitInstance()
+//        val apiInterface = retro.create(APIInterface::class.java)
+//        val objects: Call<List<ResponseObjects>> = apiInterface.getComments()
+//        objects.enqueue(object : Callback<List<ResponseObjects>> {
+//            override fun onResponse(
+//                call: Call<List<ResponseObjects>>,
+//                response: Response<List<ResponseObjects>>
+//            ) {
+//
+//                val uList : List<ResponseObjects> = response.body()!!
+//                recycler.adapter=AdapterClass(uList)
+//            }
+//
+//            override fun onFailure(call: Call<List<ResponseObjects>>, t: Throwable) {
+//                Toast.makeText(view.context,t.toString(), Toast.LENGTH_LONG).show()
+//            }
+//
+//        })
     }
 
 }

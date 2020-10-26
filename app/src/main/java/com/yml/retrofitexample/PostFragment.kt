@@ -17,23 +17,31 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         super.onViewCreated(view, savedInstanceState)
         recycler=view.findViewById(R.id.recyclerView2)
         recycler.layoutManager= LinearLayoutManager(view.context)
-        val retro = RetrofitInitializer.getRetrofitInstance()
-        val apiInterface = retro.create(APIInterface::class.java)
-        val objects2: Call<List<ResponseObjects>> = apiInterface.getPosts()
-        objects2.enqueue(object : Callback<List<ResponseObjects>> {
-            override fun onResponse(
-                call: Call<List<ResponseObjects>>,
-                response: Response<List<ResponseObjects>>
-            ) {
 
-                val uList : List<ResponseObjects> = response.body()!!
-                recycler.adapter=AdapterClass(uList)
-            }
-            override fun onFailure(call: Call<List<ResponseObjects>>, t: Throwable) {
-                Toast.makeText(view.context,t.toString(), Toast.LENGTH_LONG).show()
+        val mainViewModel = MainViewModel()
+        mainViewModel.getPosts(object : ViewCallBack{
+            override fun onApiSuccess(commentsList: List<ResponseObjects>) {
+                recycler.adapter=AdapterClass(commentsList)
             }
 
         })
+//        val retro = RetrofitInitializer.getRetrofitInstance()
+//        val apiInterface = retro.create(APIInterface::class.java)
+//        val objects2: Call<List<ResponseObjects>> = apiInterface.getPosts()
+//        objects2.enqueue(object : Callback<List<ResponseObjects>> {
+//            override fun onResponse(
+//                call: Call<List<ResponseObjects>>,
+//                response: Response<List<ResponseObjects>>
+//            ) {
+//
+//                val uList : List<ResponseObjects> = response.body()!!
+//                recycler.adapter=AdapterClass(uList)
+//            }
+//            override fun onFailure(call: Call<List<ResponseObjects>>, t: Throwable) {
+//                Toast.makeText(view.context,t.toString(), Toast.LENGTH_LONG).show()
+//            }
+//
+//        })
     }
 
 }

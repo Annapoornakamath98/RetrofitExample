@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         val firstFragment = PostFragment()
         val secondFragment = TodosFragment()
         val thirdFragment = AlbumsFragment()
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.frameLayout,commentsFragment)
             .addToBackStack(null)
