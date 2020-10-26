@@ -20,8 +20,8 @@ class PostFragment : Fragment(R.layout.fragment_post) {
 
         val mainViewModel = MainViewModel()
         mainViewModel.getPosts(object : ViewCallBack{
-            override fun onApiSuccess(commentsList: List<ResponseObjects>) {
-                recycler.adapter=AdapterClass(commentsList)
+            override fun onApiSuccess(apiList: List<ResponseObjects>) {
+                recycler.adapter=AdapterClass(apiList)
             }
 
         })

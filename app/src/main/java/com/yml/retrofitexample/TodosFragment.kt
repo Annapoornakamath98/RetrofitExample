@@ -21,8 +21,8 @@ class TodosFragment : Fragment(R.layout.fragment_todos) {
 
         val mainViewModel = MainViewModel()
         mainViewModel.getTodos(object : ViewCallBack{
-            override fun onApiSuccess(todosList: List<ResponseObjects>) {
-                recycler.adapter=AdapterClass(todosList)
+            override fun onApiSuccess(apiList: List<ResponseObjects>) {
+                recycler.adapter=AdapterClass(apiList)
             }
 
         })

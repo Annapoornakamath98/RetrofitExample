@@ -21,8 +21,8 @@ class AlbumsFragment : Fragment(R.layout.fragment_albums) {
 
         val mainViewModel = MainViewModel()
         mainViewModel.getAlbums(object : ViewCallBack{
-            override fun onApiSuccess(albumsList: List<ResponseObjects>) {
-                recycler.adapter=AdapterClass(albumsList)
+            override fun onApiSuccess(apiList: List<ResponseObjects>) {
+                recycler.adapter=AdapterClass(apiList)
             }
 
         })

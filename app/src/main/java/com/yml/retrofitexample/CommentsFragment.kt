@@ -21,8 +21,8 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
 
         val mainViewModel = MainViewModel()
         mainViewModel.getComments(object : ViewCallBack{
-            override fun onApiSuccess(postsList: List<ResponseObjects>) {
-                recycler.adapter=AdapterClass(postsList)
+            override fun onApiSuccess(apiList: List<ResponseObjects>) {
+                recycler.adapter=AdapterClass(apiList)
             }
         })
 
