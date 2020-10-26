@@ -14,6 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 private lateinit var recycler: RecyclerView
+private lateinit var btnComments: Button
 private lateinit var btnNext: Button
 private lateinit var btnTodos:Button
 private lateinit var btnAlbum : Button
@@ -30,9 +31,16 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.frameLayout,commentsFragment)
             .addToBackStack(null)
             .commit()
+        btnComments=findViewById(R.id.comment)
         btnNext=findViewById(R.id.next)
         btnTodos=findViewById(R.id.todo)
         btnAlbum=findViewById(R.id.album)
+        btnComments.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout,commentsFragment)
+                    .addToBackStack(null)
+                    .commit()
+        }
         btnNext.setOnClickListener {
             supportFragmentManager.beginTransaction().
             replace(R.id.frameLayout,firstFragment).
